@@ -26,4 +26,6 @@ app.use(cors());
 app.use(express.json());
 app.use(errorHandler);
 
-app.listen(PORT, () => logger.info(`Listening on port ${PORT}`));
+app.listen(PORT, async () => {
+  logger.info(`Listening on port ${PORT}`);
+});
