@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import logger from './utils/logger.js';
 import errorHandler from './middleware/error-handler.js';
 import routeLogger from './middleware/route-logger.js';
+import artistRouter from './routes/artists.js';
 
 process.on('uncaughtException', (err: unknown) => {
   logger.error(err);
@@ -26,6 +27,7 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(routeLogger);
+app.use('/artists', artistRouter);
 app.use(errorHandler);
 
 app.listen(PORT, async () => {
