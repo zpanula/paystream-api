@@ -4,6 +4,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import logger from './utils/logger.js';
 import errorHandler from './middleware/error-handler.js';
+import routeLogger from './middleware/route-logger.js';
 
 process.on('uncaughtException', (err: unknown) => {
   logger.error(err);
@@ -24,6 +25,7 @@ const app = express();
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+app.use(routeLogger);
 app.use(errorHandler);
 
 app.listen(PORT, async () => {
