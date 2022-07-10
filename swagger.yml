@@ -1,0 +1,134 @@
+swagger: '2.0'
+info:
+  description: 'This is a backend API for an application which a fictional accounting team uses to pay out the correct streaming royalties to respective artists.'
+  version: '1.0.0'
+  title: 'PayStream API'
+  license:
+    name: 'MIT'
+    url: 'https://raw.githubusercontent.com/zpanula/paystream-api/main/LICENSE'
+host: 'paystream-api.herokuapp.com'
+basePath: '/'
+paths:
+  /artists:
+    get:
+      summary: 'Get all artists'
+      description: ''
+      operationId: 'getArtists'
+      produces:
+        - 'application/json'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/Artist'
+    post:
+      summary: 'Add an artist'
+      description: ''
+      operationId: 'createArtist'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'body'
+          name: artist
+          schema:
+            $ref: '#/definitions/Artist'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/Artist'
+        '400':
+          description: 'Artist already exists.'
+
+  /artists/{id}:
+    get:
+      summary: 'Get artist by ID'
+      description: ''
+      operationId: 'getArtistById'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'id'
+          in: 'path'
+          description: ''
+          required: true
+          type: 'integer'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/Artist'
+        '404':
+          description: 'Artist does not exist.'
+    put:
+      summary: 'Update an artist'
+      description: ''
+      operationId: 'updateArtist'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'id'
+          in: 'path'
+          description: ''
+          required: true
+          type: 'integer'
+        - in: 'body'
+          name: artist
+          schema:
+            $ref: '#/definitions/Artist'
+      responses:
+        '200':
+          description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/Artist'
+        '404':
+          description: 'Artist does not exist.'
+    delete:
+      summary: 'Delete an artist'
+      description: ''
+      operationId: 'deleteArtist'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'id'
+          in: 'path'
+          description: ''
+          required: true
+          type: 'integer'
+      responses:
+        '204':
+          description: 'Successful operation'
+        '404':
+          description: 'Artist does not exist.'
+definitions:
+  Artist:
+    type: 'object'
+    required:
+      - 'name'
+      - 'rate'
+      - 'streams'
+    properties:
+      id:
+        type: 'integer'
+        format: 'int64'
+        example: 29
+      name:
+        type: 'string'
+        example: 'Aerosmith'
+      rate:
+        type: 'number'
+        format: 'float'
+        example: 0.00735
+      streams:
+        type: 'integer'
+        format: 'int64'
+        example: 14890938
+      payoutCompleted:
+        type: 'boolean'
+        example: false
