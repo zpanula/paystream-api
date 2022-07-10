@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
-    "test": "vitest --run",
+    "test": "npm run lint && vitest --run && tsc --noEmit",
     "clean": "rimraf dist",
     "build": "tsc",
     "postinstall": "tsc",
