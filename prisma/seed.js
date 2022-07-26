@@ -19,6 +19,7 @@ const load = async () => {
         name: row.artist,
         rate: row.rate,
         streams: row.streams,
+        payout: row.streams * row.rate,
       };
 
       await prisma.artist.create({ data: artist });

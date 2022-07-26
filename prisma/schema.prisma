@@ -12,5 +12,6 @@ model Artist {
   name            String  @unique
   rate            Float
   streams         Int
+  payout          Float
   payoutCompleted Boolean @default(false)
 }

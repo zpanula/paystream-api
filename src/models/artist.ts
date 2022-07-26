@@ -5,6 +5,7 @@ type Artist = {
   name: string;
   rate: number;
   streams: number;
+  payout: number;
   payoutCompleted?: boolean;
 };
 

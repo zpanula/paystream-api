@@ -37,6 +37,7 @@ export const create = async (artist: Artist) => {
         name: artist.name,
         rate: artist.rate,
         streams: artist.streams,
+        payout: artist.rate * artist.streams,
         payoutCompleted: artist.payoutCompleted,
       },
     });
@@ -57,6 +58,7 @@ export const update = async (id: number, artistUpdate: Artist) => {
         name: artistUpdate.name,
         rate: artistUpdate.rate,
         streams: artistUpdate.streams,
+        payout: artistUpdate.rate * artistUpdate.streams,
         payoutCompleted: artistUpdate.payoutCompleted,
       },
     });
